@@ -22,15 +22,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-ifeq ($(shell uname -s),Darwin)
-CONFIG_DARWIN=y
-else ifeq (MINGW32,$(findstring MINGW32,$(shell uname -s)))
-CONFIG_WIN32=y
-else ifeq (MINGW64,$(findstring MINGW64,$(shell uname -s)))
-CONFIG_WIN64=y
-endif
 # Windows cross compilation from Linux
-#CONFIG_WIN32=y
+CONFIG_WIN32=y
 #CONFIG_WIN64=y
 # use link time optimization (smaller and faster executables but slower build)
 CONFIG_LTO=y
@@ -180,7 +173,7 @@ QJS_LIB_OBJS+=$(OBJDIR)/libbf.o
 QJS_OBJS+=$(OBJDIR)/qjscalc.o
 endif
 
-HOST_LIBS=-lm -ldl -lpthread
+HOST_LIBS=-lm -lpthread
 LIBS=-lm
 ifndef CONFIG_WIN32
 LIBS+=-ldl -lpthread
